@@ -1,5 +1,5 @@
 # Public IP for the Virtual Network Gateway
-resource "azurerm_public_ip" "example" {
+resource "azurerm_public_ip" "hw" {
   name                = "hw-pip"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -11,14 +11,14 @@ resource "azurerm_public_ip" "example" {
 }
 
 # Virtual Network Gateway
-resource "azurerm_virtual_network_gateway" "example" {
+resource "azurerm_virtual_network_gateway" "hw" {
   name                = "hw-vngw"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "vngw-ip"
-    public_ip_address_id          = azurerm_public_ip.example.id
+    public_ip_address_id          = azurerm_public_ip.hw.id
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = var.subnet_id
   }
@@ -34,8 +34,8 @@ resource "azurerm_virtual_network_gateway" "example" {
 }
 
 # Local Network Gateway (representing AWS VPN)
-resource "azurerm_local_network_gateway" "example" {
-  name                = "example-lng"
+resource "azurerm_local_network_gateway" "hw" {
+  name                = "hw-lng"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -48,12 +48,12 @@ resource "azurerm_local_network_gateway" "example" {
 }
 
 # VPN Connection
-resource "azurerm_virtual_network_gateway_connection" "example" {
+resource "azurerm_virtual_network_gateway_connection" "hw" {
   name                           = "hw-connection"  
   location                       = var.location
   resource_group_name            = var.resource_group_name
-  virtual_network_gateway_id     = azurerm_virtual_network_gateway.example.id
-  local_network_gateway_id       = azurerm_local_network_gateway.example.id
+  virtual_network_gateway_id     = azurerm_virtual_network_gateway.hw.id
+  local_network_gateway_id       = azurerm_local_network_gateway.hw.id
   connection_type                = "IPsec"
   vpn_type                       = "RouteBased"
   shared_key                     = var.shared_key
