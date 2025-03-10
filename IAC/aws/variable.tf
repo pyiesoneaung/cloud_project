@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS Region"
   type        = string
-  default     = "us-east-1"
+  default     = "ap-southeast-1"
 }
 
 variable "vpc_cidr" {
@@ -31,19 +31,19 @@ variable "db_subnet_cidr" {
 variable "az1" {
   description = "Availability Zone for web subnet"
   type        = string
-  default     = "us-east-1a"
+  default     = "ap-southeast-1a"
 }
 
 variable "az2" {
   description = "Availability Zone for app subnet"
   type        = string
-  default     = "us-east-1b"
+  default     = "ap-southeast-1b"
 }
 
 variable "az3" {
   description = "Availability Zone for db subnet"
   type        = string
-  default     = "us-east-1c"
+  default     = "ap-southeast-1c"
 }
 
 variable "ami_id" {
@@ -80,7 +80,7 @@ variable "vpn_subnet_cidrs" {
 variable "azs" {
   description = "List of availability zones"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"]
+  default     = ["ap-southeast-1a", "ap-southeast-1b"]
 }
 
 variable "azure_vm_public_ip" {
